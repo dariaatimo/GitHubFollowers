@@ -53,6 +53,7 @@ class FollowerListVC: UIViewController {
     
     func configureSearchController() {
         let searchController = UISearchController()
+        view.addSubview(searchController.view)
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search for a username"
