@@ -1,5 +1,5 @@
 //
-//  ErrorMessages.swift
+//  GFError.swift
 //  GitHubFollowers
 //
 //  Created by Дарья on 15.06.2025.
