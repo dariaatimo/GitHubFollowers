@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import SafariServices
 
-protocol UserInfoVCDelegate {
+protocol UserInfoVCDelegate: AnyObject {
     func didTapGitHubProfile(for user: User)
-    func didTapFollowers(for user: User)
+    func didTapGetFollowers(for user: User)
 }
 
 class UserInfoVC: UIViewController {
@@ -22,6 +21,7 @@ class UserInfoVC: UIViewController {
     var itemViews: [UIView] = []
     
     var username: String!
+    weak var delegate: FollowerListVCDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,12 +112,15 @@ extension UserInfoVC: UserInfoVCDelegate {
             return
         }
         
-        let safariVC = SFSafariViewController(url: url)
-        safariVC.preferredControlTintColor = .systemIndigo
-        present(safariVC, animated: true)
+        presentSafariVC(with: url)
     }
     
-    func didTapFollowers(for user: User) {
-        // temp
+    func didTapGetFollowers(for user: User) {
+        guard user.followers != 0 else {
+            presentGFAlertOnMainThread(title: "No followers", message: "This user has no followers😟", buttonTitle: "Ok")
+            return
+        }
+        delegate.didRequestFollowers(for: user.login)
+        dismissVC()
     }
 }
