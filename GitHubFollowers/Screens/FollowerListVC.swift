@@ -40,6 +40,9 @@ class FollowerListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
     }
     
     func configureViewController() {
@@ -129,6 +132,10 @@ extension FollowerListVC: UICollectionViewDelegate {
         userInfoVC.delegate = self
         let navController = UINavigationController(rootViewController: userInfoVC)
         present(navController, animated: true)
+    }
+    
+    @objc func addButtonTapped() {
+        print("Add Button tapped")
     }
 }
 
