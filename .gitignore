@@ -12,8 +12,8 @@ xcuserdata/
 *.ipa
 *.dSYM.zip
 *.dSYM
-*.xcodeproj
-.DS_Store
+#*.xcodeproj
+#.DS_Store
 
 ## Playgrounds
 timeline.xctimeline
